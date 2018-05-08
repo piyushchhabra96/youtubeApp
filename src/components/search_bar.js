@@ -4,7 +4,7 @@ class SearchBar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            searchValue:"Default Text"
+            searchValue:""
         };
     }
     
@@ -14,12 +14,22 @@ class SearchBar extends React.Component{
         });
     } 
 
+    handleSearch = (event) => {
+        event.preventDefault();
+        console.log("event",event);
+        //this.props.handleSearch(event.target.value);
+    }
+
     render(){
         return (
-            <div>
-                <input 
+            <div className="search-bar">
+            <form>
+                <input
+                    placeholder = "Search.." 
                     onChange = {this.handleInputChange}
-                    value = {this.state.searchValue} />
+                    value = {this.state.searchValue}
+                    onSubmit = {this.handleSearch} />
+            </form>
             </div>
         );
     }

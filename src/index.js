@@ -12,9 +12,10 @@ class App extends React.Component {
         super(props);
         this.state = { videos: [],
                        isLoading:true,
-                       selectedVideo:null };
+                       selectedVideo:null,
+                       term:'React tutorial' };
 
-        YTSearch({key: YOUTUBE_API_KEY , term:'React tutorial'}, (videos) => {
+        YTSearch({key: YOUTUBE_API_KEY , term: this.state.term}, (videos) => {
             this.setState ({ videos ,
                              isLoading:false,
                              selectedVideo:0 });
@@ -25,10 +26,13 @@ class App extends React.Component {
         this.setState( {selectedVideo:index} );
     }
 
+
+
     render(){
         return(
             <div>
-                <SearchBar />
+                <SearchBar 
+                    handleSearch = {this.handleSearch}/>
                 <VideoDetail 
                     video={this.state.videos[this.state.selectedVideo]}
                     isLoading={this.state.isLoading}/>
