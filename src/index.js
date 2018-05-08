@@ -15,16 +15,21 @@ class App extends React.Component {
                        selectedVideo:null,
                        term:'React tutorial' };
 
-        YTSearch({key: YOUTUBE_API_KEY , term: this.state.term}, (videos) => {
+    this.handleSearch("react tutorial");
+    }
+
+    handleClick = (index) => {
+        this.setState( {selectedVideo:index} );
+    }
+
+    handleSearch = (term) => {
+        YTSearch({key: YOUTUBE_API_KEY , term: term}, (videos) => {
             this.setState ({ videos ,
                              isLoading:false,
                              selectedVideo:0 });
         });
     }
 
-    handleClick = (index) => {
-        this.setState( {selectedVideo:index} );
-    }
 
 
 
